@@ -1,5 +1,3 @@
-// #![feature(generic_associated_types)]
-
 use crate::traits::applicative::Applicative;
 use crate::traits::functor::Functor;
 use crate::traits::monad::Monad;

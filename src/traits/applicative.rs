@@ -1,5 +1,3 @@
-// #![feature(generic_associated_types)]
-
 use crate::traits::functor::Functor;
 
 pub trait Applicative: Functor {
