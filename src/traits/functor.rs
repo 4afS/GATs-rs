@@ -1,4 +1,4 @@
-#![feature(generic_associated_types)]
+// #![feature(generic_associated_types)]
 pub trait Functor {
     type Unwrapped;
     type Container<B>: Functor;

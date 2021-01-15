@@ -1,6 +1,6 @@
-#![feature(generic_associated_types)]
+// #![feature(generic_associated_types)]
 
-use crate::Applicative;
+use crate::traits::applicative::Applicative;
 
 pub trait Monad: Applicative {
     fn bind<F, B>(&self, f: F) -> Self::Container<B>
