@@ -1,30 +1,18 @@
 #![feature(generic_associated_types)]
 
+pub mod functor;
+use functor::Functor;
+
+pub mod applicative;
+use applicative::Applicative;
+
+pub mod monad;
+use monad::Monad;
+
 #[derive(Debug, PartialEq, Eq)]
 enum Maybe<A> {
     Just(A),
     Nothing,
-}
-
-trait Functor {
-    type Unwrapped;
-    type Container<B>: Functor;
-
-    fn map<F, B>(&self, f: F) -> Self::Container<B>
-    where
-        F: FnOnce(&Self::Unwrapped) -> B;
-}
-
-trait Applicative: Functor {
-    fn lift_a2<F, B, C>(&self, b: &Self::Container<B>, f: F) -> Self::Container<C>
-    where
-        F: FnOnce(&Self::Unwrapped, &B) -> C;
-}
-
-trait Monad: Applicative {
-    fn bind<F, B>(&self, f: F) -> Self::Container<B>
-    where
-        F: FnOnce(&Self::Unwrapped) -> Self::Container<B>;
 }
 
 impl<A> Functor for Maybe<A> {
