@@ -25,10 +25,10 @@ impl<A> Applicative for Maybe<A> {
         F: FnOnce(&Self::Unwrapped, &B) -> C,
     {
         match self {
-            Maybe::Nothing => return Maybe::Nothing,
+            Maybe::Nothing => Maybe::Nothing,
             Maybe::Just(ref a) => match b {
-                Maybe::Nothing => return Maybe::Nothing,
-                Maybe::Just(ref b) => return Maybe::Just(f(a, b)),
+                Maybe::Nothing => Maybe::Nothing,
+                Maybe::Just(ref b) => Maybe::Just(f(a, b)),
             },
         }
     }
