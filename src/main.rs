@@ -12,7 +12,7 @@ trait Functor {
 
     fn map<F, B>(&self, f: F) -> Self::Container<B>
     where
-        F: FnMut(&Self::Unwrapped) -> B;
+        F: FnOnce(&Self::Unwrapped) -> B;
 }
 
 trait Applicative: Functor {
@@ -30,7 +30,7 @@ trait Monad: Applicative {
 impl<A> Functor for Maybe<A> {
     type Unwrapped = A;
     type Container<B> = Maybe<B>;
-    fn map<F: FnMut(&A) -> B, B>(&self, mut f: F) -> Maybe<B> {
+    fn map<F: FnOnce(&A) -> B, B>(&self, mut f: F) -> Maybe<B> {
         match self {
             Maybe::Just(ref x) => Maybe::Just(f(x)),
             Maybe::Nothing => Maybe::Nothing,
